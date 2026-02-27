@@ -1,0 +1,39 @@
+# ─── Contrastive CLIPasso requirements ──────────────────────────────
+#
+# Assumes: Python 3.10, PyTorch 2.5.x (installed separately)
+#
+# Install PyTorch FIRST (not in this file — needs --index-url):
+#   pip install torch==2.5.1 torchvision==0.20.1 --index-url https://download.pytorch.org/whl/cu124
+#
+# Then: pip install -r requirements.txt
+#
+
+# ─── numpy: must be < 2.0 (ABI break), >= 1.23 (scikit-image needs it) ─
+numpy>=1.23,<2.0
+
+# ─── Core image/science stack ─────────────────────────────────────────
+Pillow>=9.0,<11.0
+scipy>=1.9,<1.14
+scikit-image>=0.20,<0.23
+
+# ─── CLIP dependencies ────────────────────────────────────────────────
+ftfy>=6.0
+regex>=2021.8
+tqdm>=4.60
+
+# ─── SVG utilities ────────────────────────────────────────────────────
+svgwrite>=1.4
+svgpathtools>=1.4
+
+# ─── Visualisation ────────────────────────────────────────────────────
+matplotlib>=3.5
+imageio>=2.9
+
+# ─── Notebook support (optional but useful) ───────────────────────────
+ipython>=7.20
+ipywidgets>=7.0
+
+# ─── Background removal (optional — only for --mask_object) ──────────
+gdown>=4.4
+
+cssutils>=1.0
