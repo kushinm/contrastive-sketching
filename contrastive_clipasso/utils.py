@@ -98,9 +98,30 @@ def fix_image_scale(im: Image.Image) -> Image.Image:
 
 def get_mask_u2net(cfg, pil_im: Image.Image):
     """Use U2Net to generate a foreground mask."""
-    # Import here to avoid hard dependency
+    # Import U2Net — resolve path robustly regardless of working directory
     import sys
-    sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "U2Net_"))
+    # Try multiple possible locations for U2Net_
+    u2net_candidates = [
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "U2Net_"),
+        os.path.join(os.getcwd(), "U2Net_"),
+        os.path.join(os.path.dirname(os.path.abspath(cfg.target)), "..", "U2Net_"),
+    ]
+    u2net_path = None
+    for candidate in u2net_candidates:
+        candidate = os.path.abspath(candidate)
+        if os.path.isdir(candidate) and os.path.isfile(os.path.join(candidate, "model.py")):
+            u2net_path = candidate
+            break
+    
+    if u2net_path is None:
+        raise FileNotFoundError(
+            "Could not find U2Net_/model.py. Expected locations:\n"
+            + "\n".join(f"  - {os.path.abspath(c)}" for c in u2net_candidates)
+            + "\n\nMake sure U2Net_ directory with model.py exists in the project root."
+        )
+    
+    if u2net_path not in sys.path:
+        sys.path.insert(0, u2net_path)
     from model import U2NET
 
     w, h = pil_im.size
@@ -115,7 +136,7 @@ def get_mask_u2net(cfg, pil_im: Image.Image):
     ])
 
     input_tensor = data_transforms(pil_im).unsqueeze(0).to(cfg.device)
-    model_dir = os.path.join(os.path.dirname(__file__), "..", "U2Net_", "saved_models", "u2net.pth")
+    model_dir = os.path.join(u2net_path, "saved_models", "u2net.pth")
     net = U2NET(3, 1)
     if torch.cuda.is_available() and cfg.use_gpu:
         net.load_state_dict(torch.load(model_dir))
