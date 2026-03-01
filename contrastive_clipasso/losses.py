@@ -45,7 +45,8 @@ class CLIPVisualEncoder(nn.Module):
         super().__init__()
         self.clip_model = clip_model
         self.featuremaps = None
-        for i in range(12):
+        self.num_layers = len(clip_model.visual.transformer.resblocks)
+        for i in range(self.num_layers):
             self.clip_model.visual.transformer.resblocks[i].register_forward_hook(
                 self._make_hook(i)
             )
@@ -61,7 +62,7 @@ class CLIPVisualEncoder(nn.Module):
     def forward(self, x):
         self.featuremaps = collections.OrderedDict()
         fc_features = self.clip_model.encode_image(x).float()
-        featuremaps = [self.featuremaps[k] for k in range(12)]
+        featuremaps = [self.featuremaps[k] for k in range(self.num_layers)]
         return fc_features, featuremaps
 
 
@@ -132,8 +133,21 @@ class ContrastiveCLIPLoss(nn.Module):
         self.conv_loss_type = cfg.clip_conv_loss_type
         self.distance_fn = DISTANCE_FNS[self.conv_loss_type]
 
-        # Weights
-        self.layer_weights = cfg.clip_conv_layer_weights
+        # Weights — auto-pad to match the number of conv feature stages.
+        # ResNets produce 5 stages (stem + layers 1-4).
+        # ViTs produce N stages (one per transformer block: 12 for ViT-B, 24 for ViT-L).
+        if self.clip_model_name.startswith("ViT"):
+            num_conv_stages = self.visual_encoder.num_layers
+        else:
+            num_conv_stages = 5  # stem, layer1, layer2, layer3, layer4
+        
+        self.layer_weights = list(cfg.clip_conv_layer_weights)
+        if len(self.layer_weights) < num_conv_stages:
+            # Pad with zeros — only the explicitly specified layers contribute
+            self.layer_weights += [0.0] * (num_conv_stages - len(self.layer_weights))
+        elif len(self.layer_weights) > num_conv_stages:
+            # Truncate if user provided too many
+            self.layer_weights = self.layer_weights[:num_conv_stages]
         self.fc_loss_weight = cfg.clip_fc_loss_weight
         self.contrastive_weight = cfg.contrastive_weight
         self.num_augs = cfg.num_aug_clip

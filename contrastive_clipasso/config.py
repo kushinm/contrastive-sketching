@@ -50,7 +50,7 @@ class SketchConfig:
     clip_conv_loss: float = 1.0
     clip_conv_loss_type: str = "L2"
     clip_conv_layer_weights: List[float] = field(
-        default_factory=lambda: [0.0, 0.0, 1.0, 1.0, 0.0]
+        default_factory=lambda: [0.0, 0.0, 0.0, 1.0, 0.0] ### zeroing out layer 3 too.
     )
     clip_fc_loss_weight: float = 0.1
     num_aug_clip: int = 4
