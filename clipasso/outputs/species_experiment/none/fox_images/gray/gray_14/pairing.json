@@ -1,0 +1,10 @@
+{
+  "condition": "none",
+  "target": "/data/kushinm/repos/contrastive-sketching/target_images/caricatures/fox_images/gray/gray_14.jpeg",
+  "target_category": "fox_images",
+  "target_species": "gray",
+  "distractor": null,
+  "distractor_category": null,
+  "distractor_species": null,
+  "seed": 0
+}

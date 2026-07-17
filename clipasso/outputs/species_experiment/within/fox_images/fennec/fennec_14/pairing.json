@@ -1,0 +1,10 @@
+{
+  "condition": "within",
+  "target": "/data/kushinm/repos/contrastive-sketching/target_images/caricatures/fox_images/fennec/fennec_14.jpg",
+  "target_category": "fox_images",
+  "target_species": "fennec",
+  "distractor": "/data/kushinm/repos/contrastive-sketching/target_images/caricatures/fox_images/tibetan_sand/tibetan_18.png",
+  "distractor_category": "fox_images",
+  "distractor_species": "tibetan_sand",
+  "seed": 0
+}

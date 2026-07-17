@@ -1,0 +1,10 @@
+{
+  "condition": "between",
+  "target": "/data/kushinm/repos/contrastive-sketching/target_images/caricatures/fox_images/tibetan_sand/tibetan_02.jpg",
+  "target_category": "fox_images",
+  "target_species": "tibetan_sand",
+  "distractor": "/data/kushinm/repos/contrastive-sketching/target_images/caricatures/lemur_images/mouse/mouse_07.jpeg",
+  "distractor_category": "lemur_images",
+  "distractor_species": "mouse",
+  "seed": 0
+}

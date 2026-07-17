@@ -1,0 +1,10 @@
+{
+  "condition": "none",
+  "target": "/data/kushinm/repos/contrastive-sketching/target_images/caricatures/fox_images/tibetan_sand/tibetan_02.jpg",
+  "target_category": "fox_images",
+  "target_species": "tibetan_sand",
+  "distractor": null,
+  "distractor_category": null,
+  "distractor_species": null,
+  "seed": 0
+}

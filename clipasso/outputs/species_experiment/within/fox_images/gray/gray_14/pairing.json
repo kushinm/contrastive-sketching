@@ -1,0 +1,10 @@
+{
+  "condition": "within",
+  "target": "/data/kushinm/repos/contrastive-sketching/target_images/caricatures/fox_images/gray/gray_14.jpeg",
+  "target_category": "fox_images",
+  "target_species": "gray",
+  "distractor": "/data/kushinm/repos/contrastive-sketching/target_images/caricatures/fox_images/tibetan_sand/tibetan_10.jpg",
+  "distractor_category": "fox_images",
+  "distractor_species": "tibetan_sand",
+  "seed": 0
+}

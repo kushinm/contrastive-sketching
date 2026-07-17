@@ -1,0 +1,10 @@
+condition,category,species,target_image,distractor_category,distractor_species,distractor_image,output_dir,best_loss,best_iter,num_iter,num_paths,seed
+none,fox_images,fennec,fennec_14.jpg,,,,/data/kushinm/repos/contrastive-sketching/outputs/species_experiment/none/fox_images/fennec/fennec_14,0.12646484375,0,50,16,0
+within,fox_images,fennec,fennec_14.jpg,fox_images,tibetan_sand,tibetan_18.png,/data/kushinm/repos/contrastive-sketching/outputs/species_experiment/within/fox_images/fennec/fennec_14,0.076904296875,0,50,16,0
+between,fox_images,fennec,fennec_14.jpg,lemur_images,mouse,mouse_17.jpg,/data/kushinm/repos/contrastive-sketching/outputs/species_experiment/between/fox_images/fennec/fennec_14,0.0657958984375,0,50,16,0
+none,fox_images,gray,gray_14.jpeg,,,,/data/kushinm/repos/contrastive-sketching/outputs/species_experiment/none/fox_images/gray/gray_14,0.142822265625,0,50,16,0
+within,fox_images,gray,gray_14.jpeg,fox_images,tibetan_sand,tibetan_10.jpg,/data/kushinm/repos/contrastive-sketching/outputs/species_experiment/within/fox_images/gray/gray_14,0.09478759765625,0,50,16,0
+between,fox_images,gray,gray_14.jpeg,lemur_images,mouse,mouse_17.jpg,/data/kushinm/repos/contrastive-sketching/outputs/species_experiment/between/fox_images/gray/gray_14,0.0830078125,0,50,16,0
+none,fox_images,tibetan_sand,tibetan_02.jpg,,,,/data/kushinm/repos/contrastive-sketching/outputs/species_experiment/none/fox_images/tibetan_sand/tibetan_02,0.09478759765625,0,50,16,0
+within,fox_images,tibetan_sand,tibetan_02.jpg,fox_images,gray,gray_19.jpeg,/data/kushinm/repos/contrastive-sketching/outputs/species_experiment/within/fox_images/tibetan_sand/tibetan_02,0.03692626953125,0,50,16,0
+between,fox_images,tibetan_sand,tibetan_02.jpg,lemur_images,mouse,mouse_07.jpeg,/data/kushinm/repos/contrastive-sketching/outputs/species_experiment/between/fox_images/tibetan_sand/tibetan_02,0.007495880126953125,0,50,16,0
